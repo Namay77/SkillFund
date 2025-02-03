@@ -1,0 +1,70 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  justify-content: center;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #faebd7; /* Light beige background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  font-family: "Arial", sans-serif; /* Similar to Codecademy's font */
+}
+
+.form-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffe0; /* Light yellow background */
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+.form-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #3b32c7; /* Deep blue button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-button:hover {
+  background-color: #2923a3;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 10px;
+  color: #1a1a1a;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+  color: #3b32c7;
+}
+
+@media (max-width: 400px) {
+  .form-container {
+    width: 90%;
+  }
+}
