@@ -1,0 +1,113 @@
+/* General Layout */
+div {
+  font-family: "Arial", sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Session Card Section */
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #d32f2f;
+}
+
+/* Session Form Section */
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+form input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Additional styling for the session card */
+.session-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.session-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.session-card p {
+  font-size: 1rem;
+  margin: 4px 0;
+  color: #555;
+}
+
+.session-card p strong {
+  color: #333;
+}
+
+.session-card button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 12px;
+  transition: background-color 0.3s;
+}
+
+.session-card button:hover {
+  background-color: #d32f2f;
+}

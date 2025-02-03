@@ -6,9 +6,10 @@ import {
   Navigate,
   NavLink,
 } from "react-router-dom";
-import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
+import SessionManager from "./pages/SessionManager";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./styles/navbar.css";
@@ -36,8 +37,8 @@ function App() {
           <NavLink to="/login" className="nav-link">
             Login
           </NavLink>
-          <NavLink to="/register" className="nav-link">
-            Register
+          <NavLink to="/mysessions" className="nav-link">
+            My Sessions
           </NavLink>
           <NavLink to="/logout" className="nav-link">
             Logout
@@ -52,8 +53,16 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/mysessions"
+            element={
+              <ProtectedRoute>
+                <SessionManager />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/register" element={<RegisterAndLogout />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

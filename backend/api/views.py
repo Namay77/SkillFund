@@ -6,10 +6,18 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Session
 
 # Create your views here.
-class SessionListCreate(generics.ListCreateAPIView):
+class PublicSessionList(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
     permission_classes = [IsAuthenticated]
+
+class SessionListCreate(generics.ListCreateAPIView):
+    serializer_class = SessionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Session.objects.filter(instructor=user)
 
     def perform_create(self, serializer):
         if serializer.is_valid():

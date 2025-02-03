@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api";
+import Session from "../components/Session";
 
 function Home() {
   const [sessions, setSessions] = useState([]);
@@ -16,7 +17,14 @@ function Home() {
       .catch((error) => alert(error));
   };
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <h2>Available Sessions</h2>
+      {sessions.map((session) => (
+        <Session session={session} key={session.id} />
+      ))}
+    </div>
+  );
 }
 
 export default Home;
