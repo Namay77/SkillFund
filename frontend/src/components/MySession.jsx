@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Session.css";
 
-function Session({ session }) {
+function Session({ session, onDelete }) {
   return (
     <div className="session-card">
       <h2>{session.title}</h2>
