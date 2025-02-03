@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Session from "../components/MySession";
-import "../styles/SessionManager";
+import "../styles/SessionManager.css";
 
 function SessionManager() {
   const [sessions, setSessions] = useState([]);
