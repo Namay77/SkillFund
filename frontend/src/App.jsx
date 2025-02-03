@@ -45,22 +45,8 @@ function App() {
           </NavLink>
         </nav>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/mysessions"
-            element={
-              <ProtectedRoute>
-                <SessionManager />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/mysessions" element={<SessionManager />} />
           <Route path="/register" element={<RegisterAndLogout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
