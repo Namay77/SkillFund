@@ -23,3 +23,19 @@
 .session-card p strong {
   color: #333;
 }
+
+.session-card button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 12px;
+  transition: background-color 0.3s;
+}
+
+.session-card button:hover {
+  background-color: #d32f2f;
+}

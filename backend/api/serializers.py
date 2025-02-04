@@ -13,7 +13,13 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class SessionSerializer(serializers.ModelSerializer):
+    instructor_name = serializers.CharField(read_only=True)
+
     class Meta:
         model = Session
-        fields = ['id', 'title', 'description', 'instructor', 'cost', 'date']
-        extra_kwargs = {'instructor': {'read_only': True}}
+        fields = ['id', 'title', 'description', 'instructor', 'instructor_name', 'cost', 'date', 'time', 'duration', 'capacity', 'registrations']
+        extra_kwargs = {
+            'id': {'read_only': True},
+            'instructor': {'read_only': True},
+            'instructor_name': {'read_only': True}
+        }

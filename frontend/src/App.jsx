@@ -8,10 +8,10 @@ import {
 } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AvailableSessions from "./pages/AvailableSessions";
 import SessionManager from "./pages/SessionManager";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
 import "./styles/navbar.css";
 
 function Logout() {
@@ -49,7 +49,7 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
+                <AvailableSessions />
               </ProtectedRoute>
             }
           />
