@@ -22,7 +22,7 @@ class Session(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         if self.instructor:
-            self.instructor_name = self.instructor.username
+            self.instructor_name = self.instructor.get_username()
         super().save(*args, **kwargs)
 
     def __str__(self):
