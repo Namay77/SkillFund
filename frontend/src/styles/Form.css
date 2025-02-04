@@ -1,15 +1,15 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align text to the left */
+  align-items: flex-start;
   justify-content: center;
   margin: 50px auto;
   padding: 25px;
   border-radius: 8px;
-  background-color: #faebd7; /* Light beige background */
+  background-color: #faebd7;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 350px;
-  font-family: "Arial", sans-serif; /* Similar to Codecademy's font */
+  font-family: "Arial", sans-serif;
 }
 
 .form-container h1 {
@@ -24,7 +24,7 @@
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #ffffe0; /* Light yellow background */
+  background-color: #ffffe0;
   font-size: 1rem;
   box-sizing: border-box;
 }
@@ -38,7 +38,7 @@
   width: 100%;
   padding: 12px;
   margin-top: 15px;
-  background-color: #3b32c7; /* Deep blue button */
+  background-color: #3b32c7;
   color: white;
   border: none;
   border-radius: 5px;

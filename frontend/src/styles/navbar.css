@@ -1,59 +1,46 @@
-/* General styling for the navbar */
 .navbar {
-  background-color: white;  /* White background */
-  color: black;  /* Black text */
-  display: flex;  /* Flexbox for layout */
-  justify-content: center;  /* Center the items */
-  align-items: center;  /* Vertically center items */
-  padding: 10px 20px;  /* Padding to give some space around the navbar */
-  position: fixed;  /* Make the navbar fixed at the top */
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
   top: 0;
-  width: 100%;  /* Full width */
-  z-index: 1000;  /* Make sure it stays on top of other elements */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* A clean, modern font */
+  width: 100%;
+  z-index: 1000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Style for each navigation link */
 .nav-link {
-  color: black;  /* Black text */
-  text-decoration: none;  /* Remove underlines from links */
-  font-size: 1.2rem;  /* Revert font size to original */
-  font-weight: 300;  /* Thinner font */
-  margin: 0 20px;  /* Space between links */
-  padding: 10px 20px;  /* Padding inside the links */
-  border-radius: 5px;  /* Rounded corners */
-  transition: all 0.3s ease;  /* Smooth transition for hover effects */
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-/* Hover effect for links */
 .nav-link:hover {
-  background-color: #f0f0f0;  /* Light grey background on hover */
-  color: black;  /* Ensure the text remains black */
+  background-color: #f0f0f0;
+  color: black;
 }
 
-/* Active link style */
 .nav-link.active {
-  font-weight: 300;  /* Keep it thinner */
-  border-bottom: 3px solid #00bfff;  /* Vibrant blue underline */
+  font-weight: 300;
+  border-bottom: 3px solid #00bfff;
 }
 
-/* Ensure navbar items are stacked on smaller screens (responsive) */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;  /* Stack navbar items vertically */
-    align-items: center;  /* Center items in mobile view */
-    padding: 10px;  /* Less padding on smaller screens */
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
   }
 
   .nav-link {
-    margin: 10px 0;  /* More space between items on small screens */
+    margin: 10px 0;
   }
 }
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Session from "../components/Session";
-import Popup from "../components/Popup"; // Import Popup component
+import Popup from "../components/Popup";
 
 function Home() {
   const [sessions, setSessions] = useState([]);
@@ -38,7 +38,10 @@ function Home() {
       })
       .catch((err) => {
         if (err.response) {
-          showPopup("Registration error: " + (err.response.data.message || err.response.statusText));
+          showPopup(
+            "Registration error: " +
+              (err.response.data.message || err.response.statusText)
+          );
         } else {
           showPopup("Registration error: An unknown error occurred");
         }
@@ -48,7 +51,7 @@ function Home() {
   return (
     <div>
       {popupVisible && <Popup message={popupMessage} />}
-      
+
       <h2>Available Sessions</h2>
       {sessions.map((session) => (
         <Session
