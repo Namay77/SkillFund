@@ -16,9 +16,10 @@ function Form({ route, method }) {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-
+  
     try {
       const res = await api.post(route, { username, password });
+  
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -27,11 +28,21 @@ function Form({ route, method }) {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      if (method === "login" && error.response) {
+        if (error.response.status === 400 || error.response.status === 401) {
+          alert("User not found. Redirecting to registration...");
+          navigate("/register");
+        } else {
+          alert(error.response.data.detail || "Login failed.");
+        }
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
