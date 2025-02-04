@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
@@ -16,10 +16,10 @@ function Form({ route, method }) {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-  
+
     try {
       const res = await api.post(route, { username, password });
-  
+
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -42,7 +42,6 @@ function Form({ route, method }) {
       setLoading(false);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
@@ -65,6 +64,12 @@ function Form({ route, method }) {
       <button className="form-button" type="submit">
         {name}
       </button>
+
+      {method === "login" && (
+        <p className="register-text">
+          Not a member yet? <Link to="/register" className="register-link">Register</Link>
+        </p>
+      )}
     </form>
   );
 }
