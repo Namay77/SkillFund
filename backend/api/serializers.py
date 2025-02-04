@@ -5,7 +5,7 @@ from .models import Session
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password']
+        fields = ['id', 'username', 'email', 'password']
         extra_kwargs = {'password': {'write_only': True}}
     
     def create(self, validated_data):
@@ -13,7 +13,17 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class SessionSerializer(serializers.ModelSerializer):
+    instructor_name = serializers.CharField(read_only=True)
+    registrations = serializers.SerializerMethodField()
+
     class Meta:
         model = Session
-        fields = ['id', 'title', 'description', 'instructor', 'cost', 'date']
-        extra_kwargs = {'instructor': {'read_only': True}}
+        fields = ['id', 'title', 'description', 'instructor', 'instructor_name', 'cost', 'date', 'time', 'duration', 'capacity', 'registrations']
+        extra_kwargs = {
+            'id': {'read_only': True},
+            'instructor': {'read_only': True},
+            'instructor_name': {'read_only': True}
+        }
+
+    def get_registrations(self, obj):
+        return [{'username': user.username, 'email': user.email} for user in obj.registrations.all()]

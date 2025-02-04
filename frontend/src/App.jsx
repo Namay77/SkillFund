@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
-import SessionManager from "./pages/SessionManager";
-import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Navbar from "./components/Navbar"; // Import the new Navbar component
+import Home from "./pages/Home";
+import MySessions from "./pages/MySessions";
+import NotFound from "./pages/NotFound";
+import Navbar from "./components/Navbar";
 
 function Logout() {
   localStorage.clear();
@@ -27,7 +22,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar /> {/* Use the Navbar component here */}
+        <Navbar />
         <Routes>
           <Route
             path="/"
@@ -41,7 +36,7 @@ function App() {
             path="/mysessions"
             element={
               <ProtectedRoute>
-                <SessionManager />
+                <MySessions />
               </ProtectedRoute>
             }
           />
