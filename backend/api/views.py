@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from .serializers import UserSerializer, SessionSerializer
-from .models import Session
+from .models import Session, UserProfile
 
 class AvailableSessions(generics.ListCreateAPIView):
     serializer_class = SessionSerializer
@@ -15,8 +15,20 @@ class AvailableSessions(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Session.objects.exclude(instructor=user).exclude(registrations=user)
+        user_profile = get_object_or_404(UserProfile, user=user)
+        user_gender = user_profile.gender
 
+        queryset = Session.objects.exclude(instructor=user).exclude(registrations=user)
+
+        if user_gender == 'M':
+            queryset = queryset.filter(gender_preferences__in=['None', 'Male'])
+        elif user_gender == 'F':
+            queryset = queryset.filter(gender_preferences__in=['None', 'Female'])
+        else:
+            queryset = queryset.filter(gender_preferences='None')
+        
+        return queryset
+        
 class RegisteredSessions(generics.ListCreateAPIView):
     serializer_class = SessionSerializer
     permission_classes = [IsAuthenticated]

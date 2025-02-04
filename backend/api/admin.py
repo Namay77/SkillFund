@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Session
+from .models import Session, UserProfile
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
@@ -10,3 +10,9 @@ class SessionAdmin(admin.ModelAdmin):
     def registered_count(self, obj):
         return obj.registrations.count()
     registered_count.short_description = "Registrations"
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "gender")
+    search_fields = ("user__username", "user__email")
+    list_filter = ("gender",)

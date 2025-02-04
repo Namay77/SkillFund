@@ -14,6 +14,7 @@ function MySessions() {
   const [time, setTime] = useState("");
   const [duration, setDuration] = useState(60);
   const [capacity, setCapacity] = useState(1);
+  const [genderPreferences, setGenderPreferences] = useState("None");
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
 
@@ -76,7 +77,6 @@ function MySessions() {
       return;
     }
 
-    // Create session if validations pass
     api
       .post("/api/sessions/create/", {
         title,
@@ -86,6 +86,7 @@ function MySessions() {
         time,
         duration,
         capacity,
+        gender_preferences: genderPreferences,
       })
       .then((res) => {
         if (res.status === 201) showPopup("Session created successfully");
@@ -191,6 +192,19 @@ function MySessions() {
           onChange={(e) => setCapacity(Number(e.target.value))}
           value={capacity}
         />
+
+        <label htmlFor="genderPreferences">Gender Preferences:</label>
+        <select
+          id="genderPreferences"
+          name="genderPreferences"
+          required
+          onChange={(e) => setGenderPreferences(e.target.value)}
+          value={genderPreferences}
+        >
+          <option value="None">None</option>
+          <option value="Male">Only Males</option>
+          <option value="Female">Only Females</option>
+        </select>
 
         <input type="submit" value="Submit" />
       </form>

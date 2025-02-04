@@ -9,6 +9,7 @@ function Form({ route, method }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [gender, setGender] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ function Form({ route, method }) {
       const payload =
         method === "login"
           ? { username, password }
-          : { username, email, password };
+          : { username, email, password, gender };
 
       const res = await api.post(route, payload);
 
@@ -52,6 +53,7 @@ function Form({ route, method }) {
   return (
     <form onSubmit={handleSubmit} className="form-container">
       <h1>{name}</h1>
+
       <input
         className="form-input"
         type="text"
@@ -60,6 +62,7 @@ function Form({ route, method }) {
         placeholder="Username"
         required
       />
+
       {method === "register" && (
         <input
           className="form-input"
@@ -70,6 +73,7 @@ function Form({ route, method }) {
           required
         />
       )}
+
       <input
         className="form-input"
         type="password"
@@ -78,7 +82,22 @@ function Form({ route, method }) {
         placeholder="Password"
         required
       />
+
+      {method === "register" && (
+        <select
+          className="form-input"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          required
+        >
+          <option value="">Select Gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      )}
+
       {loading && <LoadingIndicator />}
+
       <button className="form-button" type="submit">
         {name}
       </button>
