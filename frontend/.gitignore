@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 backend/db.sqlite3 # Add to .gitignore
 
-# Ignore Python cache files
+# Ignore Python bytecode files
 *.pyc
 __pycache__/
