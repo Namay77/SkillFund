@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Session from "../components/Session";
+import Popup from "../components/Popup"; // Import Popup component
 
 function Home() {
   const [sessions, setSessions] = useState([]);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
     getSessions();
   }, []);
 
+  const showPopup = (message) => {
+    setPopupMessage(message);
+    setPopupVisible(true);
+    setTimeout(() => setPopupVisible(false), 3000);
+  };
+
   const getSessions = () => {
     api
       .get("/api/sessions/")
-      .then((res) => res.data)
-      .then((data) => setSessions(data))
-      .catch((error) => alert(error));
+      .then((res) => setSessions(res.data))
+      .catch(() => showPopup("Failed to fetch sessions"));
   };
 
   const registerForSession = (sessionId) => {
@@ -22,26 +30,25 @@ function Home() {
       .post(`/api/sessions/register/${sessionId}/`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          alert("Successfully registered for the session!");
+          showPopup("Successfully registered for the session!");
           getSessions();
         } else {
-          alert("Failed to register for the session");
+          showPopup("Failed to register for the session");
         }
       })
       .catch((err) => {
         if (err.response) {
-          alert(
-            "Registration error: " + err.response.data.message ||
-              err.response.statusText
-          );
+          showPopup("Registration error: " + (err.response.data.message || err.response.statusText));
         } else {
-          alert("Registration error: An unknown error occurred");
+          showPopup("Registration error: An unknown error occurred");
         }
       });
   };
 
   return (
     <div>
+      {popupVisible && <Popup message={popupMessage} />}
+      
       <h2>Available Sessions</h2>
       {sessions.map((session) => (
         <Session
