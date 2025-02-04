@@ -59,7 +59,7 @@ function SessionManager() {
   return (
     <div>
       <div>
-        <h2>Session</h2>
+        <h2>Active Sessions</h2>
         {sessions.map((session) => (
           <Session
             session={session}

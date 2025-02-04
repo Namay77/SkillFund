@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AvailableSessions from "./pages/AvailableSessions";
 import SessionManager from "./pages/SessionManager";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 import "./styles/navbar.css";
 
 function Logout() {
@@ -28,22 +23,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <nav className="navbar">
-          {" "}
-          {/* Navigation bar */}
-          <NavLink to="/" className="nav-link">
-            Home
-          </NavLink>
-          <NavLink to="/login" className="nav-link">
-            Login
-          </NavLink>
-          <NavLink to="/mysessions" className="nav-link">
-            My Sessions
-          </NavLink>
-          <NavLink to="/logout" className="nav-link">
-            Logout
-          </NavLink>
-        </nav>
+        <Navbar /> {/* Use the Navbar component here */}
         <Routes>
           <Route
             path="/"

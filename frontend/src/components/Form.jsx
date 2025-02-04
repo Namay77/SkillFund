@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
@@ -19,6 +19,7 @@ function Form({ route, method }) {
 
     try {
       const res = await api.post(route, { username, password });
+
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -27,7 +28,16 @@ function Form({ route, method }) {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      if (method === "login" && error.response) {
+        if (error.response.status === 400 || error.response.status === 401) {
+          alert("User not found. Redirecting to registration...");
+          navigate("/register");
+        } else {
+          alert(error.response.data.detail || "Login failed.");
+        }
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -54,6 +64,17 @@ function Form({ route, method }) {
       <button className="form-button" type="submit">
         {name}
       </button>
+
+      {method === "login" ? (
+  <p className="register-text">
+    Not a member yet? <Link to="/register" className="register-link">Register</Link>
+  </p>
+) : (
+  <p className="register-text">
+    Already have an account? <Link to="/login" className="register-link">Login</Link>
+  </p>
+)}
+
     </form>
   );
 }
