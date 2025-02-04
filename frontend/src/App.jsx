@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AvailableSessions from "./pages/AvailableSessions";
-import SessionManager from "./pages/SessionManager";
+import Home from "./pages/Home";
+import MySessions from "./pages/MySessions";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 
@@ -22,13 +22,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar /> {/* Use the Navbar component here */}
+        <Navbar />
         <Routes>
           <Route
             path="/"
             element={
               <ProtectedRoute>
-                <AvailableSessions />
+                <Home />
               </ProtectedRoute>
             }
           />
@@ -36,7 +36,7 @@ function App() {
             path="/mysessions"
             element={
               <ProtectedRoute>
-                <SessionManager />
+                <MySessions />
               </ProtectedRoute>
             }
           />

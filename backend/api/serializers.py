@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class SessionSerializer(serializers.ModelSerializer):
     instructor_name = serializers.CharField(read_only=True)
+    registrations = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Session

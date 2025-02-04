@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Session from "../components/SessionA";
+import Session from "../components/Session";
 
-function AvailableSessions() {
+function Home() {
   const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ function AvailableSessions() {
   );
 }
 
-export default AvailableSessions;
+export default Home;

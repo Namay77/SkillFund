@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Session from "../components/SessionP";
+import Session from "../components/MySession";
 import "../styles/SessionManager.css";
 
-function SessionManager() {
+function MySessions() {
   const [sessions, setSessions] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [cost, setCost] = useState(0);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [duration, setDuration] = useState(60); // Default 60 minutes
+  const [duration, setDuration] = useState(60);
   const [capacity, setCapacity] = useState(1);
 
   useEffect(() => {
@@ -146,4 +146,4 @@ function SessionManager() {
   );
 }
 
-export default SessionManager;
+export default MySessions;

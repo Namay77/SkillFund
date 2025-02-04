@@ -47,25 +47,17 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-class RegisterSession(APIView):
+class SessionRegister(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
         session = get_object_or_404(Session, pk=pk)
 
-        # Ensure the user is not the instructor of the session
-        if request.user == session.instructor:
-            return Response({"message": "Instructors cannot register for their own sessions."}, status=400)
-
-        # Check if the user is already registered
         if session.registrations.filter(pk=request.user.pk).exists():
-            return Response({"message": "You are already registered for this session."}, status=400)
-
-        # Check if session capacity is full
-        if session.registrations.count() >= session.capacity:
+            return Response({"message": "You have already registered for this session."}, status=400)
+        elif session.registrations.count() >= session.capacity:
             return Response({"message": "Session is full."}, status=400)
-
-        # Register the user
-        session.registrations.add(request.user)
+        else:
+            session.registrations.add(request.user)
 
         return Response({"message": "Successfully registered for the session."}, status=201)

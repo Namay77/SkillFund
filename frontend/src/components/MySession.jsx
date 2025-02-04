@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/SessionA.css";
+import "../styles/SessionP.css";
 
-function Session({ session, onRegister }) {
+function Session({ session, onDelete }) {
   return (
     <div className="session-card">
       <h2>{session.title}</h2>
@@ -12,20 +12,25 @@ function Session({ session, onRegister }) {
         <strong>Instructor:</strong> {session.instructor_name}
       </p>
       <p>
-        <strong>Cost:</strong> ${session.cost}
+        <strong>Cost:</strong> ₹{session.cost}
       </p>
       <p>
         <strong>Date:</strong> {new Date(session.date).toLocaleDateString()}
       </p>
 
-      {/* Added paragraphs to display the number of registrations and capacity */}
       <p>
         <strong>Registrations:</strong> {session.registrations.length} /{" "}
         {session.capacity}
       </p>
-
-      {/* Register button */}
-      <button onClick={() => onRegister(session.id)}>Register</button>
+      <p>
+        <strong>Registered Users:</strong>
+        <ul>
+          {session.registrations.map((user) => (
+            <li key={user.id}>{user.username}</li>
+          ))}
+        </ul>
+      </p>
+      <button onClick={() => onDelete(session.id)}>Delete</button>
     </div>
   );
 }
