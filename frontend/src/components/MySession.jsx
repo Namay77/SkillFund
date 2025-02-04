@@ -26,7 +26,9 @@ function Session({ session, onDelete }) {
         <strong>Registered Users:</strong>
         <ul>
           {session.registrations.map((user) => (
-            <li key={user.id}>{user.username}</li>
+            <li key={user.id}>
+              {user.username} - {user.email}
+            </li>
           ))}
         </ul>
       </p>

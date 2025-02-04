@@ -7,6 +7,7 @@ import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,7 +19,12 @@ function Form({ route, method }) {
     e.preventDefault();
 
     try {
-      const res = await api.post(route, { username, password });
+      const payload =
+        method === "login"
+          ? { username, password }
+          : { username, email, password };
+
+      const res = await api.post(route, payload);
 
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
@@ -52,13 +58,25 @@ function Form({ route, method }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
+        required
       />
+      {method === "register" && (
+        <input
+          className="form-input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+      )}
       <input
         className="form-input"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
+        required
       />
       {loading && <LoadingIndicator />}
       <button className="form-button" type="submit">
@@ -66,15 +84,20 @@ function Form({ route, method }) {
       </button>
 
       {method === "login" ? (
-  <p className="register-text">
-    Not a member yet? <Link to="/register" className="register-link">Register</Link>
-  </p>
-) : (
-  <p className="register-text">
-    Already have an account? <Link to="/login" className="register-link">Login</Link>
-  </p>
-)}
-
+        <p className="register-text">
+          Not a member yet?{" "}
+          <Link to="/register" className="register-link">
+            Register
+          </Link>
+        </p>
+      ) : (
+        <p className="register-text">
+          Already have an account?{" "}
+          <Link to="/login" className="register-link">
+            Login
+          </Link>
+        </p>
+      )}
     </form>
   );
 }

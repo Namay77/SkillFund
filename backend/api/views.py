@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 from rest_framework import generics
-from .serializers import UserSerializer, SessionSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Session
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
+from .serializers import UserSerializer, SessionSerializer
+from .models import Session
 
 class AvailableSessions(generics.ListCreateAPIView):
     serializer_class = SessionSerializer
@@ -59,5 +61,13 @@ class SessionRegister(APIView):
             return Response({"message": "Session is full."}, status=400)
         else:
             session.registrations.add(request.user)
+
+        send_mail(
+            subject="Session Registration Confirmation",
+            message=f"Dear {request.user.username},\n\nYou have successfully registered for {session.title} on {session.date}.",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[request.user.email],
+            fail_silently=False,
+        )
 
         return Response({"message": "Successfully registered for the session."}, status=201)
