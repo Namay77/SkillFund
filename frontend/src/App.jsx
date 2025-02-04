@@ -6,8 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AvailableSessions from "./pages/AvailableSessions";
 import SessionManager from "./pages/SessionManager";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
-import "./styles/navbar.css";
+import Navbar from "./components/Navbar";
 
 function Logout() {
   localStorage.clear();
