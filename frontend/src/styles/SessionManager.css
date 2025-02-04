@@ -1,10 +1,10 @@
 /* General Layout */
 div {
   font-family: "Arial", sans-serif;
-  margin: 0 auto;
-  max-width: 800px;
   padding: 20px;
 }
+
+
 
 /* Session Card Section */
 h2 {

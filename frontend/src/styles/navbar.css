@@ -9,6 +9,9 @@
   align-items: center;
   gap: 2rem;
   width: 100%;
+  max-width: 100vw; /* Prevents exceeding viewport width */
+  overflow-x: hidden; /* Ensures no horizontal scrolling */
+  box-sizing: border-box; /* Makes sure padding doesn’t add extra width */
 }
 
 .nav-link {
