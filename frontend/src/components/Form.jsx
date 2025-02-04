@@ -7,15 +7,27 @@ import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const name = method === "login" ? "Login" : "Register";
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+
+    if (method === "register" && !validateEmail(email)) {
+      alert("Invalid email format. Please use your VIT student email.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await api.post(route, { username, password });
@@ -43,6 +55,15 @@ function Form({ route, method }) {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
       />
+      {method === "register" && (
+        <input
+          className="form-input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email (xyz@vitstudent.ac.in)"
+        />
+      )}
       <input
         className="form-input"
         type="password"
