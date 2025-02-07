@@ -1,5 +1,5 @@
 .navbar {
-  background-color: white;
+  background-color: #e6f7ff;
   color: black;
   display: flex;
   justify-content: center;
@@ -10,6 +10,16 @@
   width: 100%;
   z-index: 1000;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 10px;
 }
 
 .nav-link {
@@ -24,7 +34,7 @@
 }
 
 .nav-link:hover {
-  background-color: #f0f0f0;
+  background-color: #cce7ff;
   color: black;
 }
 
